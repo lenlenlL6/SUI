@@ -1,12 +1,13 @@
 local SUi = {}
 
-function SUi:new(x, y, width, height)
+function SUi:new(x, y, width, height, func)
   local sui = {}
   setmetatable(sui, {__index = self})
   sui.x = x
   sui.y = y
   sui.w = width
   sui.h = height
+  sui.listener = func
   sui.canvas = love.graphics.newCanvas(width, height)
   return sui
 end
@@ -44,8 +45,11 @@ function SUi:touchReleased(id, x, y, func)
     func()
     end
     self.sId = nil
-    self.stX, self.stY = nil, nil
     self.endX, self.endY = self:toUiPosition(x, y)
+    if self.endX == self.stX and self.endY == self.stY then
+      self.listener(self.stX, self.stY)
+    end
+    self.stX, self.stY = nil, nil
   end
 end
 
