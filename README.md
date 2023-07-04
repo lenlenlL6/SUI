@@ -73,3 +73,7 @@ function love.touchreleased(id, x, y)
   end)
 end
 ```
+
+
+https://github.com/lenlenlL6/SUI/assets/62021442/5250ddbe-d967-4901-b270-e3c1bbb083b7
+
